@@ -1,0 +1,9 @@
+.inputOption {
+    display: flex;
+}
+
+.inputOption > h4 {
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 10px;
+}
