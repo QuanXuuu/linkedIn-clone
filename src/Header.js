@@ -7,6 +7,7 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
 function Header() {
@@ -15,9 +16,8 @@ function Header() {
 
     
     <div className="header__left">
-    <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlua2VkaW58ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60" alt=""/>
-
-    <div className="header__search">
+      <LinkedInIcon className="header__leftIcon"/>
+      <div className="header__search">
         <SearchIcon />
         <input type="text"/>
     </div>

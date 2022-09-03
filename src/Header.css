@@ -14,10 +14,10 @@
     display: flex;
 }
 
-.header__left > img {
-    object-fit: contain;
-    height: 40px;
+.header__leftIcon {
     margin-right: 10px;
+    margin-top: 5px;
+    color: #2874a6;
 }
 
 .header__search {
