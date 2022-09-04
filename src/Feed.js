@@ -8,33 +8,39 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import Post from './Post.js'
 import { db } from './firebase';
-import firebase from 'firebase'
+
 
 function Feed() {
     const [input, setInput] = useState("");
     const [posts, setPosts] = useState([]);
 
     useEffect(() =>{
-        db.collection("post").onSnapshot(snapshot => 
-            setPosts(
-                snapshot.docs.map(doc=>({
-                    id:doc.id,
-                    data:doc.data(),
-            }))
-        )
-        );
-    }, [])
+
+        db.collection("posts").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setPosts([{id:doc.id,
+                    data:doc.data()}])
+            });
+        });
+
+})
 
     const sendPost = e => {
         e.preventDefault();
 
-        db.collection('posts').add({
+        db.collection("posts").add({
             name:"Quan Xu",
             description:"this is a test",
             message: input,
             photoUrl:'',
-            timestamp: firebase.firestore.fieldValue.serverTimestamp(),
         })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+
     }
 
   return (
@@ -59,15 +65,13 @@ function Feed() {
         </div>
 
 {posts.map(({id, data:{ name, description, message, photoUrl}}) =>(
-    <Post />
+    <Post  
+    key={id}
+    name={name} 
+    description={description}
+    message={message}
+    photoUrl={photoUrl}/>
 ))}
-        <Post 
-        key={id}
-        name={name} 
-        description={description}
-        message={message}
-        photoUrl={photoUrl}
-        />
     </div>
   )
 }
