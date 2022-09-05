@@ -19,7 +19,7 @@ function Header() {
       <LinkedInIcon className="header__leftIcon"/>
       <div className="header__search">
         <SearchIcon />
-        <input type="text"/>
+        <input placeholder="Search" type="text"/>
     </div>
     </div>
 

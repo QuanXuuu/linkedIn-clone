@@ -15,14 +15,12 @@ function Feed() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() =>{
-
         db.collection("posts").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 setPosts([{id:doc.id,
                     data:doc.data()}])
             });
         });
-
 })
 
     const sendPost = e => {
@@ -33,13 +31,15 @@ function Feed() {
             description:"this is a test",
             message: input,
             photoUrl:'',
-        })
-        .then((docRef) => {
+        });
+        /*.then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
-        });
+        });*/
+        
+        setInput("");
 
     }
 
