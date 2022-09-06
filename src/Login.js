@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {auth} from './firebase'
 import './Login.css'
+import {login} from './features/counter/userSlice'
 
 function Login() {
 const [email, setEmail] =  useState("");
@@ -12,6 +13,17 @@ const dispatch =  useDispatch
 
 const loginToApp = (e) => {
     e.preventDefault();
+
+    auth.signInWithEmailAndPassword(email, password)
+    .then(userAuth => {
+        dispatch(
+            login({
+            email: userAuth.email,
+            uid:userAuth.uid,
+            displayName: userAuth.displayName,
+            profileUrl: userAuth.user.photoUrl,
+        }))
+    }).catch(error => alert(error));
 };
 
 const register = () => {
@@ -27,7 +39,7 @@ const register = () => {
         })
     .then(()=> {
         dispatch(
-            Login({
+            login({
             email: userAuth.user.email,
             uid:userAuth.user.uid,
             displayName:name,
